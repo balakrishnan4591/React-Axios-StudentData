@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useStudent } from "../../Context";
-// import Model from "react-modal";
 import { Modal } from "bootstrap";
 import "./Student.css";
 import { HiPencil, HiTrash } from "react-icons/hi";
 
-// const API_URL = "https://jsonplaceholder.typicode.com/users";
 const API_URL = "https://666c94f149dbc5d7145e8424.mockapi.io/student"; //Mock API
 
 const Student = () => {
-  // const [students, setStudents] = useState([]);
-  // const [studentName, setStudentName] = useState("");
-  // const [selectedStudent, setSelectedStudent] = useState(null);
-
-  // const [visible, setVisible] = useState(false);
-
   const {
     students,
     setStudents,
@@ -155,9 +147,9 @@ const Student = () => {
               <div class="modal-content">
                 <div class="modal-body">
                   <div class="modal-header">
-                    {/* <h5 class="modal-title">
+                    <h5 class="modal-title">
                       {selectedStudent ? "Update Student" : "Add Student"}
-                    </h5> */}
+                    </h5>
                     <button
                       type="button"
                       class="btn-close"
@@ -195,7 +187,7 @@ const Student = () => {
                         class="btn btn-warning"
                         data-bs-dismiss="modal"
                       >
-                        {selectedStudent ? "Update Student" : "Add Student"}
+                        {selectedStudent ? "Update" : "Add"}
                       </button>
                     </div>
                   </form>

@@ -3,7 +3,6 @@ import Student from "./components/student/Student";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/nav/Navbar";
 import "./App.css";
-import CreateStudent from "./components/create/CreateStudent";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Student />} />
-                {/* <Route path="/create" element={<CreateStudent />} /> */}
               </Routes>
               <Footer />
             </Router>

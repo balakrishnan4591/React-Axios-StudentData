@@ -32,11 +32,6 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link to="/create" className="link-item">
-                  Create
-                </Link>
-              </li> */}
             </ul>
           </div>
         </nav>
