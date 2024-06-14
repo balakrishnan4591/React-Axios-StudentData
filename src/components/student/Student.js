@@ -15,6 +15,14 @@ const Student = () => {
     setStudentName,
     email,
     setEmail,
+    address,
+    setAddress,
+    city,
+    setCity,
+    state,
+    setState,
+    zip,
+    setZip,
     selectedStudent,
     setSelectedStudent,
   } = useStudent();
@@ -34,8 +42,19 @@ const Student = () => {
   const addStudent = async (name) => {
     setStudentName("");
     setEmail("");
-    console.log(name);
-    const newStudent = { name: name, email: email };
+    setAddress("");
+    setCity("");
+    setState("");
+    setZip("");
+    // console.log(name);
+    const newStudent = {
+      name: name,
+      email: email,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip,
+    };
 
     const response = await fetch(API_URL, {
       method: "POST",
@@ -62,6 +81,10 @@ const Student = () => {
     setSelectedStudent(student);
     setStudentName(student.name);
     setEmail(student.email);
+    setAddress(student.address);
+    setCity(student.city);
+    setState(student.state);
+    setZip(student.zip);
   };
 
   // remove -start
@@ -70,6 +93,10 @@ const Student = () => {
       ...selectedStudent,
       name: studentName,
       email: email,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip,
     };
 
     await fetch(`${API_URL}/${selectedStudent.id}`, {
@@ -85,6 +112,10 @@ const Student = () => {
     setSelectedStudent(null);
     setStudentName("");
     setEmail("");
+    setAddress("");
+    setCity("");
+    setState("");
+    setZip("");
   };
 
   const handleSubmit = (e) => {
@@ -96,6 +127,10 @@ const Student = () => {
       updateStudent();
       setStudentName("");
       setEmail("");
+      setAddress("");
+      setCity("");
+      setState("");
+      setZip("");
     }
   };
   // remove -end
@@ -163,23 +198,78 @@ const Student = () => {
                     ></button>
                   </div>
                   <form onSubmit={handleSubmit}>
-                    <input
-                      class="form-control"
-                      type="text"
-                      value={studentName}
-                      onChange={(e) => setStudentName(e.target.value)}
-                      placeholder="Enter the Student Name"
-                      required
-                    />
-                    <br />
-                    <input
-                      class="form-control"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter the Student Email"
-                      required
-                    />
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputName">Name</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="inputName"
+                          value={studentName}
+                          onChange={(e) => setStudentName(e.target.value)}
+                          placeholder="Enter the Student Name"
+                          required
+                        />
+                      </div>
+                      {/* <br /> */}
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail">Email</label>
+                        <input
+                          class="form-control"
+                          type="email"
+                          id="inputEmail"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter the Student Email"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputAddress">Address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputAddress"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        placeholder="1234 Main St"
+                      />
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group ">
+                        <label for="inputCity">City</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputCity"
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
+                        />
+                      </div>
+                      <div class="form-group ">
+                        <label for="inputState">State</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputState"
+                          value={state}
+                          onChange={(e) => setState(e.target.value)}
+                        />
+                      </div>
+                      <div class="form-group ">
+                        <label for="inputZip">Zip</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputZip"
+                          value={zip}
+                          onChange={(e) => setZip(e.target.value)}
+                        />
+                      </div>
+                    </div>
 
                     <div class="modal-footer">
                       <button
@@ -201,7 +291,7 @@ const Student = () => {
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Student Name</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Email ID</th>
                   <th scope="col">Actions</th>
                 </tr>

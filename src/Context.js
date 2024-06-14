@@ -6,6 +6,10 @@ export const StudentProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
   const [studentName, setStudentName] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
   return (
     <StudentContext.Provider
@@ -16,6 +20,14 @@ export const StudentProvider = ({ children }) => {
         setStudentName,
         email,
         setEmail,
+        address,
+        setAddress,
+        city,
+        setCity,
+        state,
+        setState,
+        zip,
+        setZip,
         selectedStudent,
         setSelectedStudent,
       }}
