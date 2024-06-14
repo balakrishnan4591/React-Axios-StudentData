@@ -11,6 +11,8 @@ export const StudentProvider = ({ children }) => {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [inputState, setInputState] = useState(false);
+  const [actionTitle, setActionTitle] = useState("");
   return (
     <StudentContext.Provider
       value={{
@@ -30,6 +32,10 @@ export const StudentProvider = ({ children }) => {
         setZip,
         selectedStudent,
         setSelectedStudent,
+        inputState,
+        setInputState,
+        actionTitle,
+        setActionTitle,
       }}
     >
       {children}

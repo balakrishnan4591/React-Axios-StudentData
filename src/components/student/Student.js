@@ -3,7 +3,7 @@ import axios from "axios";
 import { useStudent } from "../../Context";
 import { Modal } from "bootstrap";
 import "./Student.css";
-import { HiPencil, HiTrash } from "react-icons/hi";
+import { HiEye, HiPencil, HiTrash } from "react-icons/hi";
 
 const API_URL = "https://666c94f149dbc5d7145e8424.mockapi.io/student"; //Mock API
 
@@ -25,6 +25,10 @@ const Student = () => {
     setZip,
     selectedStudent,
     setSelectedStudent,
+    inputState,
+    setInputState,
+    actionTitle,
+    setActionTitle,
   } = useStudent();
 
   useEffect(() => {
@@ -40,6 +44,8 @@ const Student = () => {
   // remove -start
   //add new student
   const addStudent = async (name) => {
+    // setActionTitle("Add Student Details");
+    // setInputState(false);
     setStudentName("");
     setEmail("");
     setAddress("");
@@ -78,6 +84,21 @@ const Student = () => {
 
   const editStudent = (student) => {
     // setVisible(true);
+    setActionTitle("Edit Student Details");
+    setInputState(false);
+    setSelectedStudent(student);
+    setStudentName(student.name);
+    setEmail(student.email);
+    setAddress(student.address);
+    setCity(student.city);
+    setState(student.state);
+    setZip(student.zip);
+  };
+
+  const viewStudent = (student) => {
+    // setVisible(true);
+    setActionTitle("View Student Details");
+    setInputState(true);
     setSelectedStudent(student);
     setStudentName(student.name);
     setEmail(student.email);
@@ -116,12 +137,14 @@ const Student = () => {
     setCity("");
     setState("");
     setZip("");
+    setActionTitle("Add Student Details");
   };
 
   const handleSubmit = (e) => {
-    console.log("inside submit");
+    //console.log("inside submit");
     e.preventDefault();
     if (!selectedStudent) {
+      // setActionTitle("Add Student Details");
       addStudent(studentName);
     } else {
       updateStudent();
@@ -142,10 +165,10 @@ const Student = () => {
         <div className="col-md-4">
           <div className="row" id="body-img">
             <img
-              class="img-fluid"
+              className="img-fluid"
               title="Add Student"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#studentModal"
               // src="https://static.vecteezy.com/system/resources/thumbnails/021/352/965/small_2x/user-icon-person-profile-avatar-with-plus-symbol-add-user-profile-icon-png.png"
               src="https://icons.veryicon.com/png/o/brands/linear-icon-29/add-user-20.png"
             />
@@ -153,12 +176,12 @@ const Student = () => {
           </div>
 
           <div className="row">
-            <div class="card">
-              <div class="card-header">Quote</div>
-              <div class="card-body">
-                <blockquote class="blockquote mb-0">
+            <div className="card">
+              <div className="card-header">Quote</div>
+              <div className="card-body">
+                <blockquote className="blockquote mb-0">
                   <p>Click above icon to add a NEW Student Entry.</p>
-                  <footer class="blockquote-footer">
+                  <footer className="blockquote-footer">
                     Someone famous in{" "}
                     <cite title="Source Title">Source Title</cite>
                   </footer>
@@ -172,39 +195,45 @@ const Student = () => {
           {/* bootstrap Modal -start */}
           <h1 className="list-title">Student List</h1>
           <div
-            class="modal fade"
-            id="exampleModal"
+            className="modal fade"
+            id="studentModal"
             tabindex="-1"
-            aria-labelledby="exampleModalLabel"
+            aria-labelledby="studentModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div class="modal-header">
-                    <h5 class="modal-title">
-                      {selectedStudent ? "Update Student" : "Add Student"}
-                    </h5>
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <div className="modal-header">
+                    <h5 className="modal-title">{actionTitle}</h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                       onClick={() => {
                         setStudentName("");
                         setEmail("");
+                        setAddress("");
+                        setCity("");
+                        setState("");
+                        setZip("");
                         setSelectedStudent(null);
+                        setActionTitle("Add Student Details");
+                        setInputState(false);
                       }}
                     ></button>
                   </div>
                   <form onSubmit={handleSubmit}>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
+                    <div className="form-row">
+                      <br />
+                      <div className="form-group col-md-6">
                         <label for="inputName">Name</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           id="inputName"
+                          disabled={inputState}
                           value={studentName}
                           onChange={(e) => setStudentName(e.target.value)}
                           placeholder="Enter the Student Name"
@@ -212,12 +241,13 @@ const Student = () => {
                         />
                       </div>
                       {/* <br /> */}
-                      <div class="form-group col-md-6">
+                      <div className="form-group col-md-6">
                         <label for="inputEmail">Email</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="email"
                           id="inputEmail"
+                          disabled={inputState}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Enter the Student Email"
@@ -226,55 +256,62 @@ const Student = () => {
                       </div>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label for="inputAddress">Address</label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="inputAddress"
+                        disabled={inputState}
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         placeholder="1234 Main St"
                       />
                     </div>
 
-                    <div class="form-row">
-                      <div class="form-group ">
+                    <div className="form-row">
+                      <div className="form-group ">
                         <label for="inputCity">City</label>
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
+                          disabled={inputState}
                           id="inputCity"
                           value={city}
                           onChange={(e) => setCity(e.target.value)}
                         />
                       </div>
-                      <div class="form-group ">
+                      <div className="form-group ">
                         <label for="inputState">State</label>
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="inputState"
+                          disabled={inputState}
                           value={state}
                           onChange={(e) => setState(e.target.value)}
                         />
                       </div>
-                      <div class="form-group ">
+                      <div className="form-group ">
                         <label for="inputZip">Zip</label>
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="inputZip"
+                          disabled={inputState}
                           value={zip}
                           onChange={(e) => setZip(e.target.value)}
                         />
                       </div>
                     </div>
 
-                    <div class="modal-footer">
+                    <br />
+
+                    <div className="modal-footer">
                       <button
                         type="submit"
-                        class="btn btn-warning"
+                        className="btn btn-warning"
+                        disabled={inputState}
                         data-bs-dismiss="modal"
                       >
                         {selectedStudent ? "Update" : "Add"}
@@ -287,7 +324,7 @@ const Student = () => {
           </div>
           {/* bootstrap Modal -end */}
           <div className="table-responsive">
-            <table class="table table-striped">
+            <table className="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -310,10 +347,21 @@ const Student = () => {
                         <button
                           id="btn-action"
                           type="submit"
-                          title="Edit"
-                          class="btn btn-warning"
+                          title="View"
+                          className="btn btn-primary"
                           data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
+                          data-bs-target="#studentModal"
+                          onClick={() => viewStudent(student)}
+                        >
+                          <HiEye />
+                        </button>
+                        <button
+                          id="btn-action"
+                          type="submit"
+                          title="Edit"
+                          className="btn btn-warning"
+                          data-bs-toggle="modal"
+                          data-bs-target="#studentModal"
                           onClick={() => editStudent(student)}
                         >
                           <HiPencil />
@@ -322,7 +370,7 @@ const Student = () => {
                           id="btn-action"
                           type="button"
                           title="Delete"
-                          class="btn btn-danger"
+                          className="btn btn-danger"
                           onClick={() => deleteStudent(student.id)}
                         >
                           <HiTrash />
