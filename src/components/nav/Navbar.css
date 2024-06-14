@@ -34,3 +34,8 @@
 .navbar-toggler {
   margin-right: 20px;
 }
+
+.table-responsive {
+  /* background-color: red; */
+  overflow-x: auto;
+}

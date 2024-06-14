@@ -204,57 +204,56 @@ const Student = () => {
             </div>
           </div>
           {/* bootstrap Modal -end */}
-
-          <table class="table table-striped ">
-            <thead style={{ backgroundColor: "green" }}>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Student Name</th>
-                <th scope="col">Email ID</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((student) => (
-                <>
-                  {/* <br /> */}
-                  <tr>
-                    <th scope="row" key={student.id}>
-                      {student.id}
-                    </th>
-                    <td>{student.name}</td>
-                    <td>{student.email}</td>
-                    <td>
-                      <button
-                        id="btn-action"
-                        type="submit"
-                        title="Edit"
-                        class="btn btn-warning"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        onClick={() => editStudent(student)}
-                      >
-                        <HiPencil />
-                      </button>
-                      <button
-                        id="btn-action"
-                        type="button"
-                        title="Delete"
-                        class="btn btn-danger"
-                        onClick={() => deleteStudent(student.id)}
-                      >
-                        <HiTrash />
-                      </button>
-                    </td>
-                  </tr>
-                </>
-              ))}
-            </tbody>
-          </table>
-
+          <div className="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Email ID</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student) => (
+                  <>
+                    {/* <br /> */}
+                    <tr>
+                      <th scope="row" key={student.id}>
+                        {student.id}
+                      </th>
+                      <td>{student.name}</td>
+                      <td>{student.email}</td>
+                      <td>
+                        <button
+                          id="btn-action"
+                          type="submit"
+                          title="Edit"
+                          class="btn btn-warning"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          onClick={() => editStudent(student)}
+                        >
+                          <HiPencil />
+                        </button>
+                        <button
+                          id="btn-action"
+                          type="button"
+                          title="Delete"
+                          class="btn btn-danger"
+                          onClick={() => deleteStudent(student.id)}
+                        >
+                          <HiTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </div>
           {/* table end */}
         </div>
-        {/* <div className="col-md-2"></div> */}
       </div>
     </>
   );
