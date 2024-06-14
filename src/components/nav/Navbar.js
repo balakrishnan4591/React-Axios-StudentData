@@ -12,7 +12,7 @@ const Navbar = () => {
         >
           <a className="navbar-brand" href="#">
             <ImLab /> <span> </span>
-            Stud-Pro
+            STUD-Pro
           </a>
           <button
             className="navbar-toggler"

@@ -4,6 +4,7 @@ import { useStudent } from "../../Context";
 import { Modal } from "bootstrap";
 import "./Student.css";
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi";
+import { FcFlashOn } from "react-icons/fc";
 
 const API_URL = "https://666c94f149dbc5d7145e8424.mockapi.io/student"; //Mock API
 
@@ -177,14 +178,30 @@ const Student = () => {
 
           <div className="row">
             <div className="card">
-              <div className="card-header">Quote</div>
+              <div className="card-header">
+                <strong>Quick Guide</strong>
+              </div>
               <div className="card-body">
                 <blockquote className="blockquote mb-0">
-                  <p>Click above icon to add a NEW Student Entry.</p>
-                  <footer className="blockquote-footer">
-                    Someone famous in{" "}
-                    <cite title="Source Title">Source Title</cite>
-                  </footer>
+                  <p>
+                    Click above <strong>Add Student</strong> icon to add a new
+                    Student.
+                  </p>
+                  <ul>
+                    <li>
+                      <FcFlashOn /> Click <strong>View</strong> icon(
+                      <HiEye />) to view selected students details
+                    </li>
+                    <li>
+                      <FcFlashOn /> Click <strong>Edit</strong> icon(
+                      <HiPencil />) to make any changes to selected student
+                      details
+                    </li>
+                    <li>
+                      <FcFlashOn /> Click <strong>Delete</strong> icon(
+                      <HiTrash />) to remove the student from Mock API
+                    </li>
+                  </ul>
                 </blockquote>
               </div>
             </div>

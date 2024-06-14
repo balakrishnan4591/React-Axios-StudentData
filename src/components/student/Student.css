@@ -73,3 +73,7 @@ table {
   border-radius: 10px;
   color: white;
 }
+
+li {
+  list-style: none;
+}
