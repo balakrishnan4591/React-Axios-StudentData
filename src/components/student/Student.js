@@ -40,6 +40,8 @@ const Student = () => {
   // remove -start
   //add new student
   const addStudent = async (name) => {
+    setStudentName("");
+    setEmail("");
     console.log(name);
     const newStudent = { name: name, email: email };
 
