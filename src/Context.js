@@ -12,7 +12,7 @@ export const StudentProvider = ({ children }) => {
   const [zip, setZip] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [inputState, setInputState] = useState(false);
-  const [actionTitle, setActionTitle] = useState("");
+  const [actionTitle, setActionTitle] = useState("Add Student Details");
   return (
     <StudentContext.Provider
       value={{
